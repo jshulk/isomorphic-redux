@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 
 @connect(state => ({ todos: state.todos }))
 export default class Home extends React.Component {
+	static needs = [TodoActions.getTodos];
 	render(){
 		const { todos, dispatch } = this.props;
 

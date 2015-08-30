@@ -6,6 +6,8 @@ import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 import * as reducers from 'reducers';
 import { fromJS } from "immutable";
+import promiseMiddleware from 'lib/promiseMiddleware';
+import { applyMiddleware } from 'redux';
 
 let initialState = window.__INITIAL_STATE__;
 
@@ -15,7 +17,7 @@ Object.keys(initialState)
 }); 
 
 const reducer = combineReducers(reducers);
-const store = createStore(reducer, initialState);
+const store = applyMiddleware(promiseMiddleware)(createStore)(reducer, initialState);
 
 
 React.render(
